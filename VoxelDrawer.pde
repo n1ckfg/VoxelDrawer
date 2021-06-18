@@ -3,7 +3,7 @@ import peasy.*;
 PeasyCam cam;
 VoxelGrid grid;
 int dim = 64;
-int voxelSize = 3;
+int voxelSize = 2;
 
 void setup() {
   size(800, 800, P3D);
@@ -25,4 +25,6 @@ void draw() {
   background(0);
   
   grid.run();
+  
+  surface.setTitle("" + frameRate);
 }

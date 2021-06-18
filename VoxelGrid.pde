@@ -2,10 +2,12 @@ class VoxelGrid {
   
   int dim;
   int voxelSize;
+  int drawReps;
   Voxel[] voxels;
   
   VoxelGrid(int _dim, int _voxelSize) {
     dim = _dim;
+    drawReps = dim*dim;
     voxelSize = _voxelSize;
     voxels = new Voxel[dim*dim*dim];
     
@@ -47,15 +49,11 @@ class VoxelGrid {
     voxels[getIndex(_x, _y, _z)].active = false;
   }
   
-  void drawLine(int _x1, int _y1, int _z1, int _x2, int _y2, int _z2) {
-    voxelOn(_x1, _y1, _z1);
-    voxelOn(_x2, _y2, _z2);
-    
+  void drawLine(int _x1, int _y1, int _z1, int _x2, int _y2, int _z2) {   
     PVector p1 = new PVector(_x1, _y1, _z1);
     PVector p2 = new PVector(_x2, _y2, _z2);
-    int d = int(p1.dist(p2));
-    for (int i=0; i<dim; i++) {
-      float val = (float) i / (float) dim;
+    for (int i=0; i<drawReps; i++) {
+      float val = (float) i / (float) drawReps;
       PVector p3 = p1.lerp(p2, val);
       int x = int(p3.x);
       int y = int(p3.y);
