@@ -49,7 +49,7 @@ class VoxelGrid {
     voxels[getIndex(_x, _y, _z)].active = false;
   }
   
-  void drawLine(int _x1, int _y1, int _z1, int _x2, int _y2, int _z2) {   
+  void drawLine(int _x1, int _y1, int _z1, int _x2, int _y2, int _z2) {  
     PVector p1 = new PVector(_x1, _y1, _z1);
     PVector p2 = new PVector(_x2, _y2, _z2);
     for (int i=0; i<drawReps; i++) {

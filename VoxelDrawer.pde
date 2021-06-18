@@ -2,8 +2,8 @@ import peasy.*;
 
 PeasyCam cam;
 VoxelGrid grid;
-int dim = 64;
-int voxelSize = 2;
+int dim = 128;
+int voxelSize = 1;
 
 void setup() {
   size(800, 800, P3D);
@@ -22,6 +22,7 @@ void setup() {
 }
 
 void draw() {
+  lights();
   background(0);
   
   grid.run();
