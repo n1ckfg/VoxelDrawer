@@ -47,16 +47,33 @@ class VoxelGrid {
     voxels[getIndex(_x, _y, _z)].active = false;
   }
   
+  void drawLine(int _x1, int _y1, int _z1, int _x2, int _y2, int _z2) {
+    voxelOn(_x1, _y1, _z1);
+    voxelOn(_x2, _y2, _z2);
+    
+    PVector p1 = new PVector(_x1, _y1, _z1);
+    PVector p2 = new PVector(_x2, _y2, _z2);
+    int d = int(p1.dist(p2));
+    for (int i=0; i<dim; i++) {
+      float val = (float) i / (float) dim;
+      PVector p3 = p1.lerp(p2, val);
+      int x = int(p3.x);
+      int y = int(p3.y);
+      int z = int(p3.z);
+      voxelOn(x, y, z);
+    }
+  }
+  
   void run() {
+    noStroke();
+    fill(255, 192);
     pushMatrix();
-    translate(dim*voxelSize, dim/2*voxelSize, -dim/2*voxelSize);
+    translate(-dim*voxelSize/2, -dim*voxelSize/2, 0);
     for (int i=0; i<voxels.length; i++) {
       if (voxels[i].active) {
-        strokeWeight(voxelSize);
-        stroke(255, 127);
         pushMatrix();
         translate(voxels[i].x * voxelSize, voxels[i].y * voxelSize, voxels[i].z * voxelSize);
-        point(0,0);
+        box(voxelSize, voxelSize, voxelSize);
         popMatrix();
       }
     }
