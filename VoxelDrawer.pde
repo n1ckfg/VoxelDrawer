@@ -6,7 +6,7 @@ Latk latk;
 VoxelGrid grid;
 int dim = 128;
 int voxelSize = 1;
-boolean doFill = true;
+boolean doFill = false;
 
 void setup() {
   size(800, 800, P3D);
