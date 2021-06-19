@@ -6,7 +6,7 @@ Latk latk;
 VoxelGrid grid;
 int dim = 128;
 int voxelSize = 1;
-boolean doFill = false;
+boolean doFill = true;
 
 void setup() {
   size(800, 800, P3D);
@@ -24,7 +24,6 @@ void setup() {
       LatkFrame frame = layer.frames.get(j);
       for (int k=0; k<frame.strokes.size(); k++) {
         LatkStroke stroke = frame.strokes.get(k);
-        LatkPoint rootPoint = stroke.points.get(stroke.points.size()/2);
         if (stroke.points.size() > 1) {
           for (int l=1; l<stroke.points.size(); l++) {
             LatkPoint p1 = stroke.points.get(l);
@@ -33,16 +32,24 @@ void setup() {
             x1 = int(p1.co.x * dim);
             y1 = int(p1.co.y * dim);
             z1 = int(p1.co.z * dim);
-            if (doFill) {
-              x2 = int(rootPoint.co.x * dim);
-              y2 = int(rootPoint.co.y * dim);
-              z2 = int(rootPoint.co.z * dim);
-            } else {
+            x2 = int(p2.co.x * dim);
+            y2 = int(p2.co.y * dim);
+            z2 = int(p2.co.z * dim);
+            grid.drawLine(x1, y1, z1, x2, y2, z2);
+          }
+          if (doFill) {
+            LatkPoint p1 = stroke.points.get(stroke.points.size()/2);
+            for (int l=0; l<stroke.points.size(); l++) {
+              LatkPoint p2 = stroke.points.get(l);
+              int x1, y1, z1, x2, y2, z2;
+              x1 = int(p1.co.x * dim);
+              y1 = int(p1.co.y * dim);
+              z1 = int(p1.co.z * dim);
               x2 = int(p2.co.x * dim);
               y2 = int(p2.co.y * dim);
               z2 = int(p2.co.z * dim);
+              grid.drawLine(x1, y1, z1, x2, y2, z2);
             }
-            grid.drawLine(x1, y1, z1, x2, y2, z2);
           }
         }
       }
