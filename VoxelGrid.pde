@@ -66,11 +66,11 @@ class VoxelGrid {
     noStroke();
     fill(255, 192);
     pushMatrix();
-    translate(-dim*voxelSize/2, -dim*voxelSize/2, 0);
+    //translate(-dim*voxelSize/2, -dim*voxelSize/2, 0);
     for (int i=0; i<voxels.length; i++) {
       if (voxels[i].active) {
         pushMatrix();
-        translate(voxels[i].x * voxelSize, voxels[i].y * voxelSize, voxels[i].z * voxelSize);
+        translate(voxels[i].x * voxelSize, voxels[i].y * -voxelSize, voxels[i].z * voxelSize);
         box(voxelSize, voxelSize, voxelSize);
         popMatrix();
       }
