@@ -64,17 +64,21 @@ void draw() {
   } else {     
       for (int l=0; l<kmeans.clusters.size(); l++) {
         Cluster cluster = kmeans.clusters.get(l);
-        PVector p1 = cluster.centroid;
         for (int m=0; m<cluster.points.size(); m++) {
-          PVector p2 = cluster.points.get(m);
-          int x1, y1, z1, x2, y2, z2;
-          x1 = int(p1.x * dim);
-          y1 = int(p1.y * dim);
-          z1 = int(p1.z * dim);
-          x2 = int(p2.x * dim);
-          y2 = int(p2.y * dim);
-          z2 = int(p2.z * dim);
-          grid.drawLine(x1, y1, z1, x2, y2, z2);
+          PVector p1 = cluster.points.get(m);
+          int numReps = 5;
+          for (int n=0; n<numReps; n++) {
+            int index = int(random(cluster.points.size()));
+            PVector p2 = cluster.points.get(index);
+            int x1, y1, z1, x2, y2, z2;
+            x1 = int(p1.x * dim);
+            y1 = int(p1.y * dim);
+            z1 = int(p1.z * dim);
+            x2 = int(p2.x * dim);
+            y2 = int(p2.y * dim);
+            z2 = int(p2.z * dim);
+            grid.drawLine(x1, y1, z1, x2, y2, z2);
+          }
         }
       }
       
