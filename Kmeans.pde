@@ -123,7 +123,7 @@ class Centroid {
     //println("K-Means Centroid Tick");
     // move the centroid to its new position
 
-    PVector newPosition = new PVector(0.0, 0.0);
+    PVector newPosition = new PVector(0, 0, 0);
 
     float numberOfAssociatedParticles = 0;
 
