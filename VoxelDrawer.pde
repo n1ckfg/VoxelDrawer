@@ -5,7 +5,8 @@ PeasyCam cam;
 Latk latk;
 VoxelGrid grid;
 Kmeans kmeans;
-int numCentroids = 10;
+int numCentroids = 20;
+int numFillReps = 5;
 int dim = 128;
 int voxelSize = 1;
 boolean doFill = true;
@@ -66,8 +67,7 @@ void draw() {
         Cluster cluster = kmeans.clusters.get(l);
         for (int m=0; m<cluster.points.size(); m++) {
           PVector p1 = cluster.points.get(m);
-          int numReps = 5;
-          for (int n=0; n<numReps; n++) {
+          for (int n=0; n<numFillReps; n++) {
             int index = int(random(cluster.points.size()));
             PVector p2 = cluster.points.get(index);
             int x1, y1, z1, x2, y2, z2;
